@@ -1,5 +1,6 @@
 --CREATE DATABASE[ApplicationOtterProductions_CapstoneProject]
 
+
 CREATE TABLE [Organization] (
 [ID] int PRIMARY KEY IDENTITY(1, 1),
 [AspnetIdentityId] nvarchar(50),
