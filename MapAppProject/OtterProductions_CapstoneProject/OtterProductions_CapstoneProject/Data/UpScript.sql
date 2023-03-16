@@ -1,17 +1,5 @@
 --CREATE DATABASE[ApplicationOtterProductions_CapstoneProject]
 
-
-CREATE TABLE [Event] (
-[ID] int PRIMARY KEY IDENTITY(1, 1),
-[OrganizationID] int NOT NULL,
-[EventName] nvarchar(255) NOT NULL,
-[EventLocation] nvarchar(255) NOT NULL,
-[EventTypeID] int NOT NULL,
-[EventDescription] nvarchar(255) NOT NULL,
-[EventDate] datetime NOT NULL
-);
-
-
 CREATE TABLE [Organization] (
 [ID] int PRIMARY KEY IDENTITY(1, 1),
 [AspnetIdentityId] nvarchar(50),
@@ -29,9 +17,22 @@ CREATE TABLE [EventType] (
 [EventType] nvarchar(255)
 );
 
+
+CREATE TABLE [Event] (
+[ID] int PRIMARY KEY IDENTITY(1, 1),
+[OrganizationID] int NOT NULL,
+[EventName] nvarchar(255) NOT NULL,
+[EventLocation] nvarchar(255) NOT NULL,
+[EventTypeID] int NOT NULL,
+[EventDescription] nvarchar(255) NOT NULL,
+[EventDate] datetime NOT NULL
+);
+
 CREATE TABLE [MapAppUser] (
 [ID] int PRIMARY KEY IDENTITY(1, 1),
-[AspnetIdentityId] nvarchar(50)
+[AspnetIdentityId] nvarchar(50),
+[FirstName] nvarchar(50),
+[LastName] nvarchar(50)
 );
 
 CREATE TABLE [UserEventList] (

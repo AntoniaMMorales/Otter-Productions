@@ -113,4 +113,57 @@ h3 {
     width: 50%;
 }
 
-/*User Registration*/
+.navbar {
+    background-color: #78A1BB;
+}
+
+.navbar-text, .nav-link, .nav-item {
+    color: #EBF5EE;
+}
+
+.body {
+    background-color: #EBF5EE;
+}
+
+.nav-link:hover {
+   color: #283044;
+}
+
+.explanationStatement {
+    text-align: left;
+    color: #283044;
+    font-size:20px;
+    font-family: sans-serif;
+}
+.welcomeStatement {
+    text-align: left;
+    color: #283044;
+    font-size:30px;
+    font-family: sans-serif;
+}
+
+.dashboardHeader 
+{
+    text-align: left;
+    color: #283044;
+    font-size:55px;
+    font-family:sans-serif;
+}
+
+#viewUsersButton {
+    background-color: #78A1BB;
+    border-color: #78A1BB;
+    align-self: center;
+}
+
+#viewUsersButton:hover {
+    color: #283044;
+    border-color: #283044;
+    border-width: medium;
+}
+
+.card-body {
+    background-color: #EBF5EE;
+    box-shadow: 0 4px 8px 0 rgba(40, 48, 68, 0.2), 0 6px 20px 0 rgba(40, 48, 68, 0.19)
+    
+}

@@ -158,7 +158,9 @@ namespace OtterProductions_CapstoneProject.Areas.Identity.Pages.Account
                     // create our own user
                     MapAppUser ma = new MapAppUser
                     {
-                        AspnetIdentityId = user.Id
+                        AspnetIdentityId = user.Id,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName
                     };
                     await _mapAppDbContext.MapAppUsers.AddAsync(ma);
                     await _mapAppDbContext.SaveChangesAsync();

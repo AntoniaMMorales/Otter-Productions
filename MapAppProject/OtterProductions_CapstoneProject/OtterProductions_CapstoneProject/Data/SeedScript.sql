@@ -8,8 +8,7 @@ INSERT INTO [EventType](EventType)
     ('Bathroom'),
     ('Clothing');
 
-
-INSERT INTO [Organization](OrganizationLoginID, OrganizationDescription, OrganizationLocation)
+INSERT INTO [Organization](ID, OrganizationDescription, OrganizationLocation)
     VALUES
     (1, 'Food Bank Organization', 'Monmouth OR'),
     (2, 'Hunger Fighters', 'Salem OR'),
@@ -18,8 +17,6 @@ INSERT INTO [Organization](OrganizationLoginID, OrganizationDescription, Organiz
     (5, 'College Helpers', 'Salem OR'),
     (6, 'Food Bank Organization', 'Monmouth OR'),
     (7, 'Monmouth Thrift Store', 'Monmouth OR');
-
-
 
 INSERT INTO [Event](OrganizationID, EventName, EventLocation, EventTypeID, EventDescription, EventDate)
     VALUES
@@ -33,9 +30,8 @@ INSERT INTO [Event](OrganizationID, EventName, EventLocation, EventTypeID, Event
     (5, 'Cloudy with a chance of free food', 'Salem OR', 1, 'Come and enjoy a warm meal', '3/11/23'),
     (4, 'Lifeline', 'Corvallis OR', 1, 'Come and enjoy a warm meal', '3/7/23'),
     (5, 'Operation Sandwich', 'Monmouth OR', 1, 'Free lunch meals', '3/9/23'),
-    (7, 'Thrift Store', 'Monmouth OR', 2, 'Come thrift shopping! Open 10am - 5pm', '3/8/23'),
-    (6, 'Free Dinner', 'Monmouth OR', 1, 'Come and enjoy a free warm meal from 5pm - 7pm', '3/10/23'),
+    --(7, 'Thrift Store', 'Monmouth OR', 2, 'Come thrift shopping! Open 10am - 5pm', '3/8/23'),
+    --(6, 'Free Dinner', 'Monmouth OR', 1, 'Come and enjoy a free warm meal from 5pm - 7pm', '3/10/23'),
     (4, 'Summer Heat Rest', 'Corvallis OR', 2, 'Come visit if you are thirsty and need water bottles', '3/8/23');
-
 
 SET IDENTITY_INSERT Organization OFF

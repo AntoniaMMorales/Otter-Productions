@@ -4,5 +4,6 @@
     {
         public const string USER = "User";
         public const string ORGANIZATION = "Organization";
+        //public const string ADMIN = "admin";
     }
 }
