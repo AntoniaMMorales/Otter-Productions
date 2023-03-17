@@ -36,7 +36,12 @@ namespace OtterProductions_CapstoneProject
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             //builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-
+            builder.Services.AddAuthorization(opts =>
+            {
+                opts.FallbackPolicy = new AuthorizationPolicyBuilder()
+                            .RequireAuthenticatedUser()
+                            .Build();
+            });
 
             var app = builder.Build();
 
@@ -44,11 +49,9 @@ namespace OtterProductions_CapstoneProject
             //{
             //    var services = scope.ServiceProvider;
 
-
-            //https://www.stevejgordon.co.uk/aspnet-core-dependency-injection-what-is-the-iserviceprovider-and-how-is-it-built
-            //var serviceProvider = builder.Services.BuildServiceProvider();
             using (var scope = app.Services.CreateScope())
             {
+                var services = scope.ServiceProvider;
                 try
                 {
                     // Get the IConfiguration service that allows us to query user-secrets and 
@@ -57,15 +60,17 @@ namespace OtterProductions_CapstoneProject
                     // Set password with the Secret Manager tool, or store in Azure app configuration
                     // dotnet user-secrets set SeedUserPW <pw>
 
-                    var testUserPw = builder.Configuration["SeedUserPW"];
-                    var adminPw = builder.Configuration["SeedAdminPW"];
+                    var config = app.Services.GetRequiredService<IConfiguration>();
 
-                    SeedUsers.Initialize(app.Services, SeedData.UserSeedData, testUserPw).Wait();
-                    SeedUsers.InitializeAdmin(app.Services, "admin@example.com", "admin", adminPw, "The", "Admin").Wait();
+                    var testUserPw = config["SeedUserPW"];
+                    var adminPw = config["SeedAdminPW"];
+
+                    SeedUsers.Initialize(services, SeedData.UserSeedData, testUserPw).Wait();
+                    SeedUsers.InitializeAdmin(services, "admin@example.com", "admin", adminPw, "The", "Admin").Wait();
                 }
                 catch (Exception ex)
                 {
-                    var logger = app.Services.GetRequiredService<ILogger<Program>>();
+                    var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }

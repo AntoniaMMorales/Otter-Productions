@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace OtterProductions_CapstoneProject.Controllers
 {
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class AdminDashboardController : Controller
     {
         private readonly MapAppDbContext _context;
@@ -20,8 +20,6 @@ namespace OtterProductions_CapstoneProject.Controllers
         {
             _context = context;
         }
-
-
 
         public IActionResult Index()
         {

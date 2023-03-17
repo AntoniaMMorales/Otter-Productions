@@ -18,6 +18,7 @@ using OtterProductions_CapstoneProject.Areas.Identity.Data;
 
 namespace OtterProductions_CapstoneProject.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class LoginModel : PageModel
     {
         

@@ -33,7 +33,7 @@ namespace OtterProductions_CapstoneProject.Utilities
                 using (var context = new MapAppDbContext(serviceProvider.GetRequiredService<DbContextOptions<MapAppDbContext>>()))
                 {
                     // Get the Identity user manager
-                    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                    var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
                     foreach (var u in seedData)
                     {
@@ -75,7 +75,7 @@ namespace OtterProductions_CapstoneProject.Utilities
                 using (var context = new MapAppDbContext(serviceProvider.GetRequiredService<DbContextOptions<MapAppDbContext>>()))
                 {
                     // Get the Identity user manager
-                    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                    var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
                     // Ensure the admin user exists
                     var identityID = await EnsureUser(userManager, adminPw, email, email, true);
                     // Create a new MapAppUser if this one doesn't already exist
@@ -109,12 +109,12 @@ namespace OtterProductions_CapstoneProject.Utilities
         /// <param name="email"></param>
         /// <param name="emailConfirmed"></param>
         /// <returns>The Identity ID of the user</returns>
-        private static async Task<string> EnsureUser(UserManager<ApplicationUser> userManager, string password, string username, string email, bool emailConfirmed)
+        private static async Task<string> EnsureUser(UserManager<IdentityUser> userManager, string password, string username, string email, bool emailConfirmed)
         {
             var user = await userManager.FindByNameAsync(username);
             if (user == null)
             {
-                user = new ApplicationUser
+                user = new IdentityUser
                 {
                     UserName = username,
                     Email = email,
@@ -139,7 +139,7 @@ namespace OtterProductions_CapstoneProject.Utilities
         /// <param name="uid">The AspNetUser id</param>
         /// <param name="role">The role to ensure and give to the user</param>
         /// <returns></returns>
-        private static async Task<IdentityResult> EnsureRoleForUser(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, string uid, string role)
+        private static async Task<IdentityResult> EnsureRoleForUser(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager, string uid, string role)
         {
             IdentityResult iR = null;
 

@@ -26,11 +26,13 @@ namespace OtterProductions_CapstoneProject.Controllers
             _userManager = userManager;
             _eventRepository = new BrowseEventRepository(_context);
         }
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Index(Location mapLocation)
         {
@@ -39,12 +41,13 @@ namespace OtterProductions_CapstoneProject.Controllers
 
         }
 
-
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult FAQ()
         {
             return View();
@@ -55,7 +58,8 @@ namespace OtterProductions_CapstoneProject.Controllers
             IEnumerable<Event> events = _context.Events.ToList();
             return View(events);
         }
-
+        
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Browsing()
         {

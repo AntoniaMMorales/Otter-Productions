@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace OtterProductions_CapstoneProject.Controllers
 {
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class MapAppUsersController : Controller
     {
         private readonly MapAppDbContext _context;

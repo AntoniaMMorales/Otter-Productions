@@ -17,7 +17,7 @@ namespace OtterProductions_CapstoneProject.Controllers
         //}
 
 
-
+        [AllowAnonymous]
         public IActionResult Mappage(Location mapLocation)
         {
             return View(mapLocation);
