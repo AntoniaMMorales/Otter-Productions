@@ -33,12 +33,12 @@ namespace OtterProductions_CapstoneProject.Utilities
                 using (var context = new MapAppDbContext(serviceProvider.GetRequiredService<DbContextOptions<MapAppDbContext>>()))
                 {
                     // Get the Identity user manager
-                    var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
                     foreach (var u in seedData)
                     {
                         // Ensure this user exists or is newly created (Email is used for username since that is the default in Register and Login -- change those and then use username here if you want it different than email
-                        var identityID = await EnsureUser(userManager, testUserPw, u.Email, u.Email, u.EmailConfirmed);
+                        var identityID = await EnsureUser(userManager, testUserPw, u.Email, u.Email, u.EmailConfirmed, u.FirstName, u.LastName);
                         // Create a new MapAppUser if this one doesn't already exist
                         MapAppUser maUser = new MapAppUser { AspnetIdentityId = identityID, FirstName = u.FirstName, LastName = u.LastName };
                         if (!context.MapAppUsers.Any(x => x.AspnetIdentityId == maUser.AspnetIdentityId && x.FirstName == maUser.FirstName && x.LastName == maUser.LastName))
@@ -75,9 +75,9 @@ namespace OtterProductions_CapstoneProject.Utilities
                 using (var context = new MapAppDbContext(serviceProvider.GetRequiredService<DbContextOptions<MapAppDbContext>>()))
                 {
                     // Get the Identity user manager
-                    var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
                     // Ensure the admin user exists
-                    var identityID = await EnsureUser(userManager, adminPw, email, email, true);
+                    var identityID = await EnsureUser(userManager, adminPw, email, email, true, firstName, lastName);
                     // Create a new MapAppUser if this one doesn't already exist
                     MapAppUser maUser = new MapAppUser { AspnetIdentityId = identityID, FirstName = firstName, LastName = lastName };
                     if (!context.MapAppUsers.Any(x => x.AspnetIdentityId == maUser.AspnetIdentityId && x.FirstName == maUser.FirstName && x.LastName == maUser.LastName))
@@ -109,16 +109,18 @@ namespace OtterProductions_CapstoneProject.Utilities
         /// <param name="email"></param>
         /// <param name="emailConfirmed"></param>
         /// <returns>The Identity ID of the user</returns>
-        private static async Task<string> EnsureUser(UserManager<IdentityUser> userManager, string password, string username, string email, bool emailConfirmed)
+        private static async Task<string> EnsureUser(UserManager<ApplicationUser> userManager, string password, string username, string email, bool emailConfirmed, string firstName, string lastName)
         {
             var user = await userManager.FindByNameAsync(username);
             if (user == null)
             {
-                user = new IdentityUser
+                user = new ApplicationUser
                 {
                     UserName = username,
                     Email = email,
-                    EmailConfirmed = emailConfirmed
+                    EmailConfirmed = emailConfirmed,
+                    FirstName = firstName,
+                    LastName = lastName
                 };
                 await userManager.CreateAsync(user, password);
             }
@@ -139,7 +141,7 @@ namespace OtterProductions_CapstoneProject.Utilities
         /// <param name="uid">The AspNetUser id</param>
         /// <param name="role">The role to ensure and give to the user</param>
         /// <returns></returns>
-        private static async Task<IdentityResult> EnsureRoleForUser(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager, string uid, string role)
+        private static async Task<IdentityResult> EnsureRoleForUser(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, string uid, string role)
         {
             IdentityResult iR = null;
 

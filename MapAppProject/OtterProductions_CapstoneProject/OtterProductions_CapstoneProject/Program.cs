@@ -31,6 +31,12 @@ namespace OtterProductions_CapstoneProject
                 config.SignIn.RequireConfirmedPhoneNumber = false;
                 config.SignIn.RequireConfirmedEmail = false;
                 config.SignIn.RequireConfirmedAccount = false;
+                config.Password.RequireDigit = true;
+                config.Password.RequireLowercase = true;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Password.RequireUppercase = true;
+                config.Password.RequiredLength = 8;
+                config.Password.RequiredUniqueChars = 5;
             });
 
             // Add services to the container.
@@ -75,10 +81,21 @@ namespace OtterProductions_CapstoneProject
                 }
             }
 
-            app.SeedData();
+            //app.SeedData();
 
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
+            //// Configure the HTTP request pipeline.
+            //if (!app.Environment.IsDevelopment())
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
+            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            //    app.UseHsts();
+            //}
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                //app.UseMigrationsEndPoint();
+            }
+            else
             {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
