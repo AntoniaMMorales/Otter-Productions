@@ -53,6 +53,7 @@ namespace OtterProductions_CapstoneProject.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult Event()
         {
             IEnumerable<Event> events = _context.Events.ToList();

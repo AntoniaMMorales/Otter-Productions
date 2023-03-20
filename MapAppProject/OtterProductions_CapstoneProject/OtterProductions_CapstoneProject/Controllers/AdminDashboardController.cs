@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace OtterProductions_CapstoneProject.Controllers
 {
     [Authorize(Roles = "admin")]
+    //[AllowAnonymous]
     public class AdminDashboardController : Controller
     {
         private readonly MapAppDbContext _context;
