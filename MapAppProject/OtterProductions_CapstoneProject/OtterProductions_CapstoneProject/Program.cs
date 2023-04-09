@@ -29,8 +29,8 @@ namespace OtterProductions_CapstoneProject
 
 
              builder.Services.AddDbContext<MapAppDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("MapAppConnection")));
-                 //options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationConnectionAzure")));
+            //options.UseSqlServer(builder.Configuration.GetConnectionString("MapAppConnection")));
+                 options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationConnectionAzure")));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

@@ -156,12 +156,15 @@ h3 {
     width: 50%;
 }
 
+
+/* nav bar */
+
 .navbar {
-    background-color: #78A1BB;
+    background-color: #22303c;
 }
 
 .navbar-text, .nav-link, .nav-item {
-    color: #EBF5EE;
+    color: white;
 }
 
 .body {
@@ -169,28 +172,29 @@ h3 {
 }
 
 .nav-link:hover {
-   color: #283044;
+    color: #8899a6;
 }
+
+/* Admin Dashboard */
 
 .explanationStatement {
     text-align: left;
-    color: #283044;
+    color: white;
     font-size:20px;
     font-family: sans-serif;
 }
 .welcomeStatement {
     text-align: left;
-    color: #283044;
-    font-size:30px;
+    color: white;
+    font-size: 30px;
     font-family: sans-serif;
 }
 
-.dashboardHeader 
-{
+.dashboardHeader {
     text-align: left;
-    color: #283044;
-    font-size:55px;
-    font-family: 'Monotype Corsiva';
+    color: white;
+    font-size: 55px;
+    font-family: sans-serif;
 }
 
 #viewUsersButton {
@@ -209,4 +213,14 @@ h3 {
     background-color: #EBF5EE;
     box-shadow: 0 4px 8px 0 rgba(40, 48, 68, 0.2), 0 6px 20px 0 rgba(40, 48, 68, 0.19)
     
+}
+
+/* links */
+
+a {
+    color: white;
+}
+
+a:hover {
+        color: #8899a6;
 }
