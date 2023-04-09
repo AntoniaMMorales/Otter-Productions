@@ -1,3 +1,4 @@
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using OtterProductions_CapstoneProject.Areas.Identity.Data;
@@ -17,7 +18,7 @@ namespace OtterProductions_CapstoneProject
             var builder = WebApplication.CreateBuilder(args);
             //var connectionString = builder.Configuration.GetConnectionString("AuthenticationConnection") ?? throw new InvalidOperationException("Connection string 'AuthenticationConnection' not found.");
             var connectionString1 = builder.Configuration.GetConnectionString("AuthenticationConnectionAzure");
-            
+
 
             builder.Services.AddDbContext<AuthenticationDbContext>(options => options.UseSqlServer(connectionString1));
             //var builder= new SqlConnectionStringBuilder(Configuration.GetConnectionString("AuthenticationConnectionAzure"));
@@ -28,9 +29,9 @@ namespace OtterProductions_CapstoneProject
             //builder.Services.AddDbContext<AuthenticationDbContext>(options => options.UseSqlServer(connectionString2));
 
 
-             builder.Services.AddDbContext<MapAppDbContext>(options =>
-            //options.UseSqlServer(builder.Configuration.GetConnectionString("MapAppConnection")));
-                 options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationConnectionAzure")));
+            builder.Services.AddDbContext<MapAppDbContext>(options =>
+           options.UseSqlServer(builder.Configuration.GetConnectionString("MapAppConnection")));
+            //options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationConnectionAzure")));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
