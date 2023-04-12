@@ -31,8 +31,16 @@ namespace OtterProductions_CapstoneProject.Data
 
         public virtual DbSet<UserEventList> UserEventLists { get; set; }
 
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //    => optionsBuilder.UseSqlServer("Name=ApplicationConnection");
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Name=MapAppConnection");
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Name=MapAppConnection");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

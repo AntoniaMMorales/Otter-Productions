@@ -16,22 +16,13 @@ namespace OtterProductions_CapstoneProject
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            //var connectionString = builder.Configuration.GetConnectionString("AuthenticationConnection") ?? throw new InvalidOperationException("Connection string 'AuthenticationConnection' not found.");
-            var connectionString = builder.Configuration.GetConnectionString("AuthenticationConnectionAzure");
-
+            var connectionString = builder.Configuration.GetConnectionString("AuthenticationConnection") ?? throw new InvalidOperationException("Connection string 'AuthenticationConnection' not found.");
 
             builder.Services.AddDbContext<AuthenticationDbContext>(options => options.UseSqlServer(connectionString));
-            //var builder= new SqlConnectionStringBuilder(Configuration.GetConnectionString("AuthenticationConnectionAzure"));
-            //builder.Password = Configuration["OPAuth:DBPassword"];
-            //var connectionString2 = builder.Configuration.GetConnectionString("ApplicationConnectionAzure");
-
-
-            //builder.Services.AddDbContext<AuthenticationDbContext>(options => options.UseSqlServer(connectionString2));
-
 
             builder.Services.AddDbContext<MapAppDbContext>(options =>
-           options.UseSqlServer(builder.Configuration.GetConnectionString("MapAppConnection")));
-            //options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationConnectionAzure")));
+
+            options.UseSqlServer(builder.Configuration.GetConnectionString("MapAppConnection")));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -75,12 +66,6 @@ namespace OtterProductions_CapstoneProject
                 var services = scope.ServiceProvider;
                 try
                 {
-                    // Get the IConfiguration service that allows us to query user-secrets and 
-                    // the configuration on Azure
-
-                    // Set password with the Secret Manager tool, or store in Azure app configuration
-                    // dotnet user-secrets set SeedUserPW <pw>
-
                     var config = app.Services.GetRequiredService<IConfiguration>();
 
                     var testUserPw = config["SeedUserPW"];
