@@ -1,24 +1,24 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #D3D3D3;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #D3D3D3;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 
@@ -85,11 +85,23 @@ footer {
     color: white;
 }
 
+/*Map App Users Page*/
+
+#mapAppUsersTitle, #mapAppUsersTable {
+    color: white;
+}
+
+#idTitle, #firstNameTitle, #lastNameTitle, #emailTitle {
+    color: white;
+}
+
+#idInfo, #firstNameInfo, #lastNameInfo, #emailInfo {
+    color: white;
+}
+
+
 
 /*Map*/
-
-
-
 #sidebar {
     /*flex-basis: 5rem;
     flex-grow: 1;
@@ -113,7 +125,7 @@ footer {
 }
 
 #places {
-/*    list-style-type: none;
+    /*    list-style-type: none;
     padding: 0;
     margin: 0;
     overflow-y: scroll;
@@ -130,9 +142,9 @@ footer {
     cursor: pointer;
 }
 
-#placesitem:nth-child(odd) {
-    background-color: #fcfcfc;
-}
+    #placesitem:nth-child(odd) {
+        background-color: #fcfcfc;
+    }
 
 
 
@@ -149,17 +161,15 @@ footer {
 }
 
 #emailLogin {
-
 }
 
 
 #passwordLogin {
-
 }
 
-#passwordLogin:focus {
-    background-color: lightblue;
-}
+    #passwordLogin:focus {
+        background-color: lightblue;
+    }
 
 
 #cardBody {
@@ -177,8 +187,7 @@ footer {
 }
 
 h3 {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .form-floating mb-3 {
@@ -187,7 +196,9 @@ h3 {
 
 /*User Registration*/
 
+
 /* Admin Dashboard */
+
 
 .explanationStatement {
     text-align: left;
@@ -227,9 +238,21 @@ h3 {
     box-shadow: 0 4px 8px 0 rgba(40, 48, 68, 0.2), 0 6px 20px 0 rgba(40, 48, 68, 0.19)
 }
 
+#viewUsersButton {
+    background-color: #78A1BB;
+    border-color: #78A1BB;
+    align-self: center;
+}
+
+    #viewUsersButton:hover {
+        color: #283044;
+        border-color: #283044;
+        border-width: medium;
+    }
 
 
-/* nav bar */
+
+/*nav bar*/
 
 .navbar {
     background-color: #22303c;
