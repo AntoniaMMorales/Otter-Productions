@@ -16,7 +16,7 @@ namespace OtterProductions_CapstoneProject
         {
             var builder = WebApplication.CreateBuilder(args);
             //var connectionString = builder.Configuration.GetConnectionString("AuthenticationConnection") ?? throw new InvalidOperationException("Connection string 'AuthenticationConnection' not found.");
-            var connectionString1 = builder.Configuration.GetConnectionString("AuthenticationConnectionAzure");
+            var connectionString1 = builder.Configuration.GetConnectionString("AuthenticationConnection");
             
 
             builder.Services.AddDbContext<AuthenticationDbContext>(options => options.UseSqlServer(connectionString1));
