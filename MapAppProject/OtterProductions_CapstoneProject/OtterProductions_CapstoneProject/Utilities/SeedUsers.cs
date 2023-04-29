@@ -1,14 +1,8 @@
-﻿using OtterProductions_CapstoneProject.Data;
-using OtterProductions_CapstoneProject.Models;
-using OtterProductions_CapstoneProject.Utilities;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using OtterProductions_CapstoneProject.Areas.Identity.Data;
+using OtterProductions_CapstoneProject.Data;
+using OtterProductions_CapstoneProject.Models;
 
 namespace OtterProductions_CapstoneProject.Utilities
 {
@@ -55,6 +49,89 @@ namespace OtterProductions_CapstoneProject.Utilities
                 // Thrown if there is no service of the type requested from the service provider
                 // Catch it (and don't throw the exception below) if you don't want it to fail (5xx status code)
                 throw new Exception("Failed to initialize user seed data, service provider did not have the correct service");
+            }
+        }
+
+
+        /// <summary>
+        /// Initialize an admin user and role
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        /// <param name="email"></param>
+        /// <param name="userName"></param>
+        /// <param name="adminPw"></param>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <returns></returns>
+        public static async Task InitializeUser(IServiceProvider serviceProvider, string email, string userName, string testUserPw, string firstName, string lastName)
+        {
+            try
+            {
+                using (var context = new MapAppDbContext(serviceProvider.GetRequiredService<DbContextOptions<MapAppDbContext>>()))
+                {
+                    // Get the Identity user manager
+                    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                    // Ensure the admin user exists
+                    var identityID = await EnsureUser(userManager, testUserPw, email, email, true, firstName, lastName);
+                    // Create a new MapAppUser if this one doesn't already exist
+                    MapAppUser maUser = new MapAppUser { AspnetIdentityId = identityID, FirstName = firstName, LastName = lastName };
+                    if (!context.MapAppUsers.Any(x => x.AspnetIdentityId == maUser.AspnetIdentityId && x.FirstName == maUser.FirstName && x.LastName == maUser.LastName))
+                    {
+                        // Doesn't already exist, so add a new user
+                        context.Add(maUser);
+                        await context.SaveChangesAsync();
+                    }
+                    // Now make sure admin role exists and give it to this user
+                    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                    await EnsureRoleForUser(roleManager, userManager, identityID, "user");
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Thrown if there is no service of the type requested from the service provider
+                // Catch it (and don't throw the exception below) if you don't want it to fail (5xx status code)
+                throw new Exception("Failed to initialize admin user or role, service provider did not have the correct service:" + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Initialize an admin user and role
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        /// <param name="email"></param>
+        /// <param name="userName"></param>
+        /// <param name="adminPw"></param>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <returns></returns>
+        public static async Task InitializeOrganization(IServiceProvider serviceProvider, string email, string userName, string orgPw, string firstName, string lastName)
+        {
+            try
+            {
+                using (var context = new MapAppDbContext(serviceProvider.GetRequiredService<DbContextOptions<MapAppDbContext>>()))
+                {
+                    // Get the Identity user manager
+                    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                    // Ensure the admin user exists
+                    var identityID = await EnsureUser(userManager, orgPw, email, email, true, firstName, lastName);
+                    // Create a new MapAppUser if this one doesn't already exist
+                    MapAppUser maUser = new MapAppUser { AspnetIdentityId = identityID, FirstName = firstName, LastName = lastName };
+                    if (!context.MapAppUsers.Any(x => x.AspnetIdentityId == maUser.AspnetIdentityId && x.FirstName == maUser.FirstName && x.LastName == maUser.LastName))
+                    {
+                        // Doesn't already exist, so add a new user
+                        context.Add(maUser);
+                        await context.SaveChangesAsync();
+                    }
+                    // Now make sure admin role exists and give it to this user
+                    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                    await EnsureRoleForUser(roleManager, userManager, identityID, "organization");
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Thrown if there is no service of the type requested from the service provider
+                // Catch it (and don't throw the exception below) if you don't want it to fail (5xx status code)
+                throw new Exception("Failed to initialize admin user or role, service provider did not have the correct service:" + ex.Message);
             }
         }
 

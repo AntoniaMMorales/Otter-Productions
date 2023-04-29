@@ -84,8 +84,11 @@ namespace OtterProductions_CapstoneProject
 
                     var testUserPw = config["SeedUserPW"];
                     var adminPw = config["SeedAdminPW"];
+                    var orgPw = config["SeedOrganizationPW"];
 
-                    SeedUsers.Initialize(services, SeedData.UserSeedData, testUserPw).Wait();
+                    SeedUsers.InitializeUser(services, "testUser@example.com", "user", testUserPw, "Test", "User").Wait();
+                    SeedUsers.InitializeOrganization(services, "testOrg@example.com", "organization", orgPw, "Test", "Organization").Wait();
+                    //SeedUsers.Initialize(services, SeedData.UserSeedData, testUserPw).Wait();
                     SeedUsers.InitializeAdmin(services, "admin@example.com", "admin", adminPw, "The", "Admin").Wait();
                 }
                 catch (Exception ex)
