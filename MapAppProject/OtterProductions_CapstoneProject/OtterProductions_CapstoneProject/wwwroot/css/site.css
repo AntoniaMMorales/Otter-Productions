@@ -27,22 +27,49 @@ body {
     width: 600px;
 }
 
+footer {
+    position: absolute;
+    left: 0px;
+    height: 50px;
+    bottom: 0px;
+    width: 100%;
+    padding-top: 15px;
+}
 
 /*FAQ Page*/
 .faq {
     font-size: xx-large;
+    color: white;
 }
 
 .category1, .category2, .category3, .category4 {
-    font-size:large;
+    font-size: large;
+    color: #EBF5EE;
 }
 
 .accordion2, .accordion1, .accordion4 {
     width: 75%;
+    background-color: #22303c;
 }
+
+.accordion-button collapsed {
+    background-color: #22303c;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #15202b;
+    background-color: #8899a6;
+}
+
 
 .contactUsTitle, .whatInfoTitle, .useInfoTitle {
     font-size: x-large;
+    color: white;
+}
+
+.accordion-item, .accordion-header, .accordion-button {
+    background-color: #22303c;
+    color: white;
 }
 
 /*Privacy Page*/
@@ -50,26 +77,71 @@ body {
 .privacyHeader {
     font-size: xx-large;
     font-weight: bold;
-
+    color: white;
 }
 
 .whatInfoStatement, .useInfoStatement, .contactUsStatement {
     width: 70%;
+    color: white;
 }
+
 
 /*Map*/
 
-#map {
-    height: 700px; /* The height is 400 pixels */
-    width: 100%; /* The width is the width of the web page */
+
+
+#sidebar {
+    /*flex-basis: 5rem;
+    flex-grow: 1;
+    padding: 1rem;
+    max-width: 30rem;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;*/
 }
+
+#map {
+    height: 700px; /*The height is 700 pixels */
+    width: 100%; /*The width is the width of the web page */
+}
+
+#sidebar {
+    /*display: flex;
+    flex-direction: column;*/
+}
+
+#places {
+/*    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+    flex-grow: 1;*/
+}
+
+#placesitem {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+#placesitem:nth-child(odd) {
+    background-color: #fcfcfc;
+}
+
+
+
+
 
 .thead, .tbody {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
 }
-
-
 /*User Login*/
 
 .registrationLink {
@@ -113,41 +185,29 @@ h3 {
     width: 50%;
 }
 
-.navbar {
-    background-color: #78A1BB;
-}
+/*User Registration*/
 
-.navbar-text, .nav-link, .nav-item {
-    color: #EBF5EE;
-}
-
-.body {
-    background-color: #EBF5EE;
-}
-
-.nav-link:hover {
-   color: #283044;
-}
+/* Admin Dashboard */
 
 .explanationStatement {
     text-align: left;
-    color: #283044;
-    font-size:20px;
-    font-family: sans-serif;
-}
-.welcomeStatement {
-    text-align: left;
-    color: #283044;
-    font-size:30px;
+    color: white;
+    font-size: 20px;
     font-family: sans-serif;
 }
 
-.dashboardHeader 
-{
+.welcomeStatement {
     text-align: left;
-    color: #283044;
-    font-size:55px;
-    font-family:sans-serif;
+    color: white;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+
+.dashboardHeader {
+    text-align: left;
+    color: white;
+    font-size: 55px;
+    font-family: sans-serif;
 }
 
 #viewUsersButton {
@@ -156,14 +216,43 @@ h3 {
     align-self: center;
 }
 
-#viewUsersButton:hover {
-    color: #283044;
-    border-color: #283044;
-    border-width: medium;
-}
+    #viewUsersButton:hover {
+        color: #283044;
+        border-color: #283044;
+        border-width: medium;
+    }
 
 .card-body {
     background-color: #EBF5EE;
     box-shadow: 0 4px 8px 0 rgba(40, 48, 68, 0.2), 0 6px 20px 0 rgba(40, 48, 68, 0.19)
-    
 }
+
+
+
+/* nav bar */
+
+.navbar {
+    background-color: #22303c;
+}
+
+.navbar-text, .nav-link, .nav-item {
+    color: white;
+}
+
+.body {
+    background-color: #EBF5EE;
+}
+
+.nav-link:hover {
+    color: #8899a6;
+}
+
+/* links */
+
+a {
+    color: white;
+}
+
+    a:hover {
+        color: #8899a6;
+    }
