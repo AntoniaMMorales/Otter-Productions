@@ -22,7 +22,10 @@ namespace BDD_Tests_OtterProductions.Shared
             { "Home" , "/" },
             { "Login", "/Identity/Account/Login" },
             { "Register", "/Identity/Account/Register" },
-            { "Map", "/Map/Mappage"}
+            { "Map", "/Map/Mappage"},
+            { "Admin Dashboard", "/AdminDashboard" },
+            { "Admin Error", "/Identity/Account/AccessDenied?ReturnUrl=%2FAdminDashboard" }
+
         };
 
         public static string PathFor(string pathName) => Paths[pathName];
