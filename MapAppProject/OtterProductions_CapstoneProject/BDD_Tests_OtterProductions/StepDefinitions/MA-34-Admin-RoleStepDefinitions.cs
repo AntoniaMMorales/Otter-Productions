@@ -172,7 +172,7 @@ namespace BDD_Tests_OtterProductions.StepDefinitions
             _adminPage.GoTo(pageName);
         }
 
-        [Given(@"I login"), When(@"I login")]
+        [Given(@"I login")]
         public void WhenILogin()
         {
             // Go to the login page
