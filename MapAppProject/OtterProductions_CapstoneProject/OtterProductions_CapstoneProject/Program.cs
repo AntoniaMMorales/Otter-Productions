@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using OtterProductions_CapstoneProject.Utilities;
 using System.Configuration;
 using Microsoft.Data.SqlClient;
+using System.Diagnostics;
 
 namespace OtterProductions_CapstoneProject
 {
@@ -16,10 +17,10 @@ namespace OtterProductions_CapstoneProject
         {
             var builder = WebApplication.CreateBuilder(args);
             //var connectionString = builder.Configuration.GetConnectionString("AuthenticationConnection") ?? throw new InvalidOperationException("Connection string 'AuthenticationConnection' not found.");
-            var connectionString1 = builder.Configuration.GetConnectionString("AuthenticationConnectionAzure");
-            
+            var connectionString1 = builder.Configuration.GetConnectionString("AuthenticationConnection");
+            Debug.WriteLine(connectionString1);
 
-            builder.Services.AddDbContext<AuthenticationDbContext>(options => options.UseSqlServer(connectionString1));
+            builder.Services.AddDbContext<AuthenticationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AuthenticationConnection")));
             //var builder= new SqlConnectionStringBuilder(Configuration.GetConnectionString("AuthenticationConnectionAzure"));
             //builder.Password = Configuration["OPAuth:DBPassword"];
             //var connectionString2 = builder.Configuration.GetConnectionString("ApplicationConnectionAzure");

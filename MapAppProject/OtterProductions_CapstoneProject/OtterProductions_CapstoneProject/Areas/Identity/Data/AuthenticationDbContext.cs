@@ -20,5 +20,13 @@ public class AuthenticationDbContext : IdentityDbContext<ApplicationUser>
         // Add your customizations after calling base.OnModelCreating(builder);
     }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Name=AuthenticationConnection");
+        }
+    }
+
     public DbSet<IdentityOrganization> Organizations { get; set; }
 }
